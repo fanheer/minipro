@@ -1,0 +1,20 @@
+/* pages/calcu/index.wxss */
+.cal-item{
+  margin: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  justify-items: center;
+}
+.cal-item-input{
+  border-bottom: 1px solid #aaa;
+  text-align: center;
+}
+.extra-item{
+  margin: 10px 20px;
+  display: flex;
+  justify-content: flex-start;
+}
+.cal-button{
+  margin: 20px;
+  border: 1px solid;
+}

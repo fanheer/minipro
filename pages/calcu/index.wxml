@@ -1,0 +1,26 @@
+<!--pages/calcu/index.wxml-->
+<view class="cal-item">
+  <label>用户</label>
+  <label>金额</label>
+  <label>应付</label>
+</view>
+<view wx:for="{{callist}}" wx:for-index="idx" wx:for-item="item" wx:key="idx" class="cal-item">
+  <label>用户{{idx+1}}</label>
+  <input class="cal-item-input" value="{{item.initNum}}" bindinput="changeCalList" data-key="{{idx}}"></input>
+  <text>{{item.result}}</text>
+</view>
+<view>
+  <button class="cal-button" type="primary" catchtap="addCalList">增加</button>
+</view>
+<view wx:for="{{extraLabel}}" wx:for-index="idx" wx:for-item="item" wx:key="idx" class="extra-item">
+  <label>{{item.label}}</label>
+  <input class="cal-item-input" value="{{item.value}}" bindinput="changeExtra" data-key="{{idx}}"></input>
+</view>
+<view class="cal-item">
+  <button class="cal-button" type="primary" catchtap="calResult">计算</button>
+  <button class="cal-button" type="primary" catchtap="clearAll">清空</button>
+</view>
+<view class="extra-item">
+  <label>总金额</label>
+  <label>{{totalPay}}</label>
+</view>
