@@ -5,43 +5,44 @@ Page({
    * 页面的初始数据
    */
   data: {
-      callist: [{ initNum: 0, result: 0 }],
-    extraLabel: [{ label: '额外支出', value: 0 }, { label: '优惠金额', value: 0 }],
+    callist: [{ initNum: '', result: '' }],
+    extraLabel: [{ label: '额外支出', value: '' }, { label: '优惠金额', value: '' }],
     totalPay: 0
   },
 
   changeCalList: function (e) {
     let { callist } = this.data
-    callist[e.target.dataset.key]['initNum'] = parseFloat(e.detail.value)
+    callist[e.target.dataset.key]['initNum'] = (e.detail.value)
     this.setData({ callist })
   },
   changeExtra: function (e) {
     let { extraLabel } = this.data
-    extraLabel[e.target.dataset.key]['value'] = parseFloat(e.detail.value)
+    extraLabel[e.target.dataset.key]['value'] = (e.detail.value)
     this.setData({ extraLabel })
   },
   addCalList: function () {
     let { callist } = this.data
-    callist.push({ initNum: 0, })
+    callist.push({ initNum: '', })
     this.setData({ callist })
   },
   calResult: function () {
     let { callist, extraLabel } = this.data
     let totalPay = 0, sum = 0
-    let difference = extraLabel[0]['value'] - extraLabel[1]['value']
+    let difference = parseFloat(extraLabel[0]['value']) - parseFloat(extraLabel[1]['value'])
     callist.map(citem => {
-      sum += citem['initNum']
+      sum += parseFloat(citem['initNum']) || 0
     })
     callist.map(citem => {
-      citem['result'] = (citem['initNum'] * (1 + difference / sum)).toFixed(2)
-      totalPay += parseFloat(citem['result'])
+      citem['result'] = (parseFloat(citem['initNum'] || 0) * (1 + difference / sum)).toFixed(2)
+      totalPay += parseFloat(citem['result']) || 0
     })
+    debugger
     this.setData({ callist, totalPay })
   },
   clearAll: function () {
     this.setData({
-      callist: [{ initNum: 0, result: 0 }],
-      extraLabel: [{ label: '额外支出', value: 0 }, { label: '优惠金额', value: 0 }],
+      callist: [{ initNum: '', result: '' }],
+      extraLabel: [{ label: '额外支出', value: '' }, { label: '优惠金额', value: '' }],
       totalPay: 0
     })
   },
